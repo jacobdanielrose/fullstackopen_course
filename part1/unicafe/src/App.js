@@ -1,0 +1,37 @@
+import { useState } from "react";
+
+const Button = ({ text, handleClick }) => {
+  return (
+    <button onClick={handleClick}>
+      {text}
+    </button>
+  )
+}
+function App() {
+  const [goodValue, setGoodValue] = useState(0)
+  const [badValue, setBadValue] = useState(0)
+  const [neutralValue, setNeutralValue] = useState(0)
+
+  return (
+    <>
+      <h2>
+        give feedback
+      </h2>
+      <div>
+        <Button text={'good'} handleClick={() => setGoodValue(goodValue + 1)} />
+        <Button text={'neutral'} handleClick={() => setNeutralValue(neutralValue + 1)} />
+        <Button text={'bad'} handleClick={() => setBadValue(badValue + 1)} />
+      </div>
+      <h2>
+        statistics
+      </h2>
+      <div>
+        <p>good {goodValue}</p>
+        <p>neutral {neutralValue}</p>
+        <p>bad {badValue}</p>
+      </div>
+    </>
+  );
+}
+
+export default App;
