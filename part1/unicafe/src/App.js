@@ -15,6 +15,15 @@ const Statistics = (props) => {
     badValue
   } = props
 
+  if (!(goodValue || neutralValue || badValue)) {
+    return (
+      <>
+        <h2>statistics</h2>
+        <p>No feedback given</p>
+      </>
+    )
+  }
+
   return (
     <>
       <h2>
