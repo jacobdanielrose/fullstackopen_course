@@ -13,13 +13,19 @@ const StatisticLine = ({ text, value, percentage }) => {
   if (percentage) {
     return (
       <>
-        <p>{text} {value} %</p>
+        <tr>
+          <th>{text}</th>
+          <td>{value} %</td>
+        </tr>
       </>
     )
   }
   return (
     <>
-      <p>{text} {value}</p>
+      <tr>
+        <th>{text}</th>
+        <td>{value}</td>
+      </tr>
     </>
   )
 }
@@ -45,14 +51,16 @@ const Statistics = (props) => {
       <h2>
         statistics
       </h2>
-      <div>
-        <StatisticLine text="good" value={goodValue} />
-        <StatisticLine text="neutral" value={neutralValue} />
-        <StatisticLine text="bad" value={badValue} />
-        <StatisticLine text="all" value={goodValue + neutralValue + badValue} />
-        <StatisticLine text="average" value={(goodValue * 1 + neutralValue * 0 + badValue * (-1)) / 3} />
-        <StatisticLine text="positive" value={goodValue / (goodValue + neutralValue + badValue) * 100} percentage />
-      </div>
+      <table>
+        <tbody>
+          <StatisticLine text="good" value={goodValue} />
+          <StatisticLine text="neutral" value={neutralValue} />
+          <StatisticLine text="bad" value={badValue} />
+          <StatisticLine text="all" value={goodValue + neutralValue + badValue} />
+          <StatisticLine text="average" value={(goodValue * 1 + neutralValue * 0 + badValue * (-1)) / 3} />
+          <StatisticLine text="positive" value={goodValue / (goodValue + neutralValue + badValue) * 100} percentage />
+        </tbody>
+      </table>
     </>
   )
 }
