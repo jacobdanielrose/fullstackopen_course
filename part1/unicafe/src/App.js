@@ -65,6 +65,7 @@ const Statistics = (props) => {
   )
 }
 
+
 function App() {
   const [goodValue, setGoodValue] = useState(0)
   const [badValue, setBadValue] = useState(0)
