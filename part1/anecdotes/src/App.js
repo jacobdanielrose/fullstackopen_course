@@ -4,12 +4,6 @@ const randomInteger = (arr) => {
   return Math.floor(Math.random() * arr.length)
 }
 
-const incrementVote = (index, arr) => {
-  const arr_ = [...arr]
-  return arr_[index] += 1
-}
-
-
 function App() {
   const anecdotes = [
     'If it hurts, do it more often.',
