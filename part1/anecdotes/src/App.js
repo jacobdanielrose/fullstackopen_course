@@ -24,23 +24,34 @@ function App() {
 
   const [selected, setSelected] = useState(0)
   const [points, setPoints] = useState(new Uint8Array(anecdotes.length))
+  const [mostVoted, setMostVoted] = useState(0)
 
 
   const handleVote = () => {
+    // tally the vote
     const copy = [...points]
     copy[selected] += 1
     setPoints(copy)
+
+    // find index of most voted and set that index's state
+    const mostVoted = points.indexOf(Math.max(...points))
+    setMostVoted(mostVoted)
   }
 
-
   return (
-    <div>
+    <>
       <div>
-        {anecdotes[selected]}
+        <div>
+          {anecdotes[selected]}
+        </div>
+        <button onClick={handleVote}>vote</button>
+        <button onClick={() => setSelected(randomInteger(anecdotes))}>next anecdote</button>
       </div>
-      <button onClick={handleVote}>vote</button>
-      <button onClick={() => setSelected(randomInteger(anecdotes))}>next anecdote</button>
-    </div>
+      <div>
+        <h2>Anecdote with the most votes</h2>
+        <p>{anecdotes[mostVoted]}</p>
+      </div>
+    </>
   );
 }
 
