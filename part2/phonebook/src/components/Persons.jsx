@@ -1,7 +1,9 @@
 import personService from './personService'
 
-const handleClick = (id) => {
-    return personService.deleteCall(id).then(() => { window.location.reload() })
+const handleClick = (person) => {
+    if (window.confirm(`Delete ${person.name}?`)) {
+        return personService.deleteCall(person.id).then(() => { window.location.reload() })
+    }
 }
 const Persons = ({ persons }) => {
     return (
@@ -11,7 +13,7 @@ const Persons = ({ persons }) => {
                     <>
                         <p key={person.name}>
                             {person.name} {person.number}
-                            <button onClick={() => handleClick(person.id)}>delete</button>
+                            <button onClick={() => handleClick(person)}>delete</button>
                         </p>
 
                     </>
