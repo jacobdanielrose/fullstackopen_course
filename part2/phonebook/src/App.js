@@ -58,9 +58,14 @@ const App = () => {
     if (personExist) {
       alert(`Either ${newName} or ${newNumber} is already added to phonebook`)
     } else {
-      setPersons(persons.concat(personObject))
-      setNewName('')
-      setNewNumber('')
+      axios
+        .post('http://localhost:3001/persons', personObject)
+        .then(res => {
+          setPersons(persons.concat(personObject))
+          setNewName('')
+          setNewNumber('')
+        }
+        )
     }
   }
 
