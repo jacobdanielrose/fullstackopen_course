@@ -45,23 +45,33 @@ const App = () => {
     }
 
     let personExist = false
+    let personIndex = 0
 
-    persons.forEach(person => {
-      if (person.name === newName || person.number === newNumber) {
+    persons.forEach((person, index) => {
+      if (person.name === newName) {
         personExist = true
-      }
-      else {
-        personExist = false
+        personIndex = index
+        console.log(person)
       }
     })
 
     if (personExist) {
-      alert(`Either ${newName} or ${newNumber} is already added to phonebook`)
+      if (window.confirm(`${personObject.name} already exists. Do you want to replace the old number with a new one?`)) {
+        personService
+          .update(personIndex + 1, personObject)
+          .then((data) => {
+            const newPersons = [...persons]
+            newPersons[personIndex] = personObject
+            setPersons(newPersons)
+            setNewName('')
+            setNewNumber('')
+          })
+      }
     } else {
       personService
         .create(personObject)
-        .then(() => {
-          setPersons(persons.concat(personObject))
+        .then((data) => {
+          setPersons(persons.concat(data))
           setNewName('')
           setNewNumber('')
         })
