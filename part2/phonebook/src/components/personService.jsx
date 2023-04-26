@@ -16,5 +16,10 @@ const update = (id, newObject) => {
     return res.then(response => response.data)
 }
 
-const service = { getAll, create, update }
+const deleteCall = (id) => {
+    const res = axios.delete(`${baseUrl}/${id}`)
+    return res.then(response => response.data)
+}
+
+const service = { getAll, create, update, deleteCall }
 export default service
