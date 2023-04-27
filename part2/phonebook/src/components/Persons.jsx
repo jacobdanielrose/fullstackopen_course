@@ -2,7 +2,9 @@ import personService from './personService'
 
 const handleClick = (person) => {
     if (window.confirm(`Delete ${person.name}?`)) {
-        return personService.deleteCall(person.id).then(() => { window.location.reload() })
+        return personService
+            .deleteCall(person.id)
+            .then(() => { window.location.reload() })
     }
 }
 const Persons = ({ persons }) => {
