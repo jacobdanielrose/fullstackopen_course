@@ -73,7 +73,7 @@ const App = () => {
             setPersons(newPersons)
             setNewName('')
             setNewNumber('')
-            setFeedbackMessage(`${data.name} was updated!`)
+            setFeedbackMessage(`${personObject.name} was updated!`)
             setTimeout(() => {
               setFeedbackMessage(null)
             }, 5000)
@@ -88,12 +88,14 @@ const App = () => {
     } else {
       personService
         .create(personObject)
-        .then((data) => {
-          setPersons(persons.concat(data))
+        .then(() => {
+          console.log(personObject)
+
+          setPersons(persons.concat(personObject))
           setNewName('')
           setNewNumber('')
 
-          setFeedbackMessage(`${data.name} was added!`)
+          setFeedbackMessage(`${personObject.name} was added!`)
           setTimeout(() => {
             setFeedbackMessage(null)
           }, 5000)
@@ -101,7 +103,8 @@ const App = () => {
     }
   }
 
-  const personsToShow = persons.filter(person => person.name.toLowerCase().includes(nameSearch))
+
+  const personsToShow = persons.filter(person => person.name?.toLowerCase().includes(nameSearch))
 
   return (
     <div>
